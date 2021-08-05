@@ -19,8 +19,8 @@ jobs:
            DATETAG=$(date +%s)
            docker build . --file Dockerfile --tag alecbrown/rust-flatbuffers:$DATETAG
            docker image tag alecbrown/rust-flatbuffers:$DATETAG alecbrown/rust-flatbuffers:latest
-    - name: Login to Docker
-      run: docker login -u ${{ secrets.DOCKER_USER }} -p ${{ secrets.DOCKER_PWD }}
     - name: Push the Docker Image to hub.docker.com
-      run: docker push --all-tags alecbrown/rust-flatbuffers
+      run: |
+           docker login -u ${{ secrets.DOCKER_USER }} -p ${{ secrets.DOCKER_PWD }}
+           docker push --all-tags alecbrown/rust-flatbuffers
     
