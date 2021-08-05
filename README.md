@@ -1,2 +1,2 @@
-# pipeline-rust-flatbuffers
+# rust-flatbuffers
 rust and flatbuffers
