@@ -1,0 +1,26 @@
+name: Docker Image CI
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+    - name: Build and tag the docker image
+      run: |
+           DATETAG=$(date +%s)
+           docker build . --file Dockerfile --tag alecbrown/rust-flatbuffers:$DATETAG
+           docker image tag alecbrown/rust-flatbuffers:$DATETAG alecbrown/rust-flatbuffers:latest
+    - name: Push the Docker Image to hub.docker.com
+      run: |
+           docker login -u ${{ secrets.DOCKER_USER }} -p ${{ secrets.DOCKER_PWD }}
+           docker push --all-tags alecbrown/rust-flatbuffers
+    
