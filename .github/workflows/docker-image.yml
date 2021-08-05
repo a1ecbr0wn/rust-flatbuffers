@@ -18,6 +18,8 @@ jobs:
       run: docker build . --file Dockerfile --tag alecbrown/rust-flatbuffers:$(date +%s)
     - name: Login to Docker
       run: docker login -u ${{ secrets.DOCKER_USER }} -p ${{ secrets.DOCKER_PWD }}
+    - name: Tag the image
+      run: docker image tag alecbrown/rust-flatbuffers alecbrown/rust-flatbuffers:latest
     - name: Push the Docker Image to hub.docker.com
       run: docker push alecbrown/rust-flatbuffers
     
