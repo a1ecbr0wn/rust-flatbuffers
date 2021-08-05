@@ -14,12 +14,14 @@ jobs:
 
     steps:
     - uses: actions/checkout@v2
+    - name: Set a date tag as the number of seconds since the epoch
+      run: DATETAG=$(date +%s)
     - name: Build the Docker image
-      run: docker build . --file Dockerfile --tag alecbrown/rust-flatbuffers:$(date +%s)
+      run: docker build . --file Dockerfile --tag alecbrown/rust-flatbuffers:$DATETAG
     - name: Login to Docker
       run: docker login -u ${{ secrets.DOCKER_USER }} -p ${{ secrets.DOCKER_PWD }}
     - name: Tag the image
-      run: docker image tag alecbrown/rust-flatbuffers:$(date =%s) alecbrown/rust-flatbuffers:latest
+      run: docker image tag alecbrown/rust-flatbuffers:$DATETAG alecbrown/rust-flatbuffers:latest
     - name: Push the Docker Image to hub.docker.com
       run: docker push --all-tags alecbrown/rust-flatbuffers
     
