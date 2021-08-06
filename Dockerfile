@@ -1,6 +1,6 @@
 FROM rust:latest
 RUN apt update
-#RUN apt upgrade -y
+RUN apt upgrade -y
 
 RUN apt install cmake -y
 
