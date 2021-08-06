@@ -6,6 +6,7 @@ RUN apt install cmake -y
 
 RUN cd /opt \
  && git clone https://github.com/google/flatbuffers.git \
+ && cd /opt/flatbuffers \
  && git checkout tags/v2.0.0 -b latest-release
 
 RUN cd /opt/flatbuffers \
