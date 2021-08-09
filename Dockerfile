@@ -22,9 +22,13 @@ RUN ln -s /opt/flatbuffers/flatc /usr/local/bin/flatc \
  && chmod +x /opt/flatbuffers/flatc
 
 # Since Cargo does not use the .ssh folder and git does, creating this config file forces
-# Cargo to use the git client and so you can access other projects via ssh git URLs 
+# Cargo to use the git client and so you can access other projects via ssh git URLs
+# /root is the generic root home and /builder/home is the home for a google cloudbuild user.
 RUN mkdir /root/.cargo \
- && echo "[net]\ngit-fetch-with-cli=true" > /root/.cargo/config.toml
+ && echo "[net]\ngit-fetch-with-cli=true" > /root/.cargo/config.toml \
+ && mkdir -p /builder/home/.cargo \
+ && chmod a+wr /builder/home/.cargo \
+ && ln -s /root/.cargo/config.toml /builder/home/.cargo/config.toml
 
 # Check the versions
 RUN rustc --version \
