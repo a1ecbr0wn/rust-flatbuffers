@@ -26,14 +26,12 @@ RUN ln -s /opt/flatbuffers/flatc /usr/local/bin/flatc \
 # /root is the generic root home and /builder/home is the home for a google cloudbuild user.
 RUN mkdir /root/.cargo \
  && echo "[net]\ngit-fetch-with-cli=true" > /root/.cargo/config.toml \
- && mkdir -p /builder/home/.cargo \
+ && mkdir -p /builder/home \
  && chmod a+wr /builder/home \
  && ln -s /root/.cargo /builder/home/ \
  && mkdir /workspace \
  && chmod a+wr /workspace \
- && ln -s /root/.cargo /workspace/ \
- && chmod a+wr /builder/home/.cargo \
- && ln -s /root/.cargo/config.toml /builder/home/.cargo/config.toml
+ && ln -s /root/.cargo /workspace/
 
 # Check the versions
 RUN rustc --version \
