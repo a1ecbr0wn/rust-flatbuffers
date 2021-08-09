@@ -32,6 +32,8 @@ RUN mkdir /root/.cargo \
  && mkdir /workspace \
  && chmod a+wr /workspace \
  && ln -s /root/.cargo /workspace/
+ && chmod a+wr /builder/home/.cargo \
+ && ln -s /root/.cargo/config.toml /builder/home/.cargo/config.toml
 
 # Check the versions
 RUN rustc --version \
