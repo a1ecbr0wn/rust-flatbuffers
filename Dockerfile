@@ -27,8 +27,11 @@ RUN ln -s /opt/flatbuffers/flatc /usr/local/bin/flatc \
 RUN mkdir /root/.cargo \
  && echo "[net]\ngit-fetch-with-cli=true" > /root/.cargo/config.toml \
  && mkdir -p /builder/home/.cargo \
- && chmod a+wr /builder/home/.cargo \
- && ln -s /root/.cargo/config.toml /builder/home/.cargo/config.toml
+ && chmod a+wr /builder/home \
+ && ln -s /root/.cargo /builder/home/ \
+ && mkdir /workspace \
+ && chmod a+wr /workspace \
+ && ln -s /root/.cargo /workspace/
 
 # Check the versions
 RUN rustc --version \
