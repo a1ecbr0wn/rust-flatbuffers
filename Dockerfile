@@ -31,7 +31,7 @@ RUN mkdir /root/.cargo \
  && ln -s /root/.cargo /builder/home/ \
  && mkdir /workspace \
  && chmod a+wr /workspace \
- && ln -s /root/.cargo /workspace/
+ && ln -s /root/.cargo /workspace/ \
  && chmod a+wr /builder/home/.cargo \
  && ln -s /root/.cargo/config.toml /builder/home/.cargo/config.toml
 
