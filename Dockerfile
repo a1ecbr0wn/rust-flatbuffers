@@ -25,13 +25,7 @@ RUN ln -s /opt/flatbuffers/flatc /usr/local/bin/flatc \
 # Cargo to use the git client and so you can access other projects via ssh git URLs
 # /root is the generic root home and /builder/home is the home for a google cloudbuild user.
 RUN mkdir /root/.cargo \
- && echo "[net]\ngit-fetch-with-cli=true" > /root/.cargo/config.toml \
- && mkdir -p /builder/home \
- && chmod a+wr /builder/home \
- && ln -s /root/.cargo /builder/home/ \
- && mkdir /workspace \
- && chmod a+wr /workspace \
- && ln -s /root/.cargo /workspace/
+ && echo "[net]\ngit-fetch-with-cli=true" > /root/.cargo/config.toml
 
 # Check the versions
 RUN rustc --version \
