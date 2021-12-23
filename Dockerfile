@@ -22,7 +22,9 @@ RUN ln -s /opt/flatbuffers/flatc /usr/local/bin/flatc \
  && chmod +x /opt/flatbuffers/flatc
 
 # Since Cargo does not use the .ssh folder and git does, creating this config file forces
-# Cargo to use the git client and so you can access other projects via ssh git URLs 
+# Cargo to use the git client and so you can access other projects via ssh git URLs
+# For Google Cloudbuld builds, do the following before running cargo commands:
+#  ln -s /root/.cargo /workspace/
 RUN mkdir /root/.cargo \
  && echo "[net]\ngit-fetch-with-cli=true" > /root/.cargo/config.toml
 
