@@ -27,8 +27,8 @@ RUN ln -s /opt/flatbuffers/flatc /usr/local/bin/flatc \
 RUN mkdir /root/.cargo \
  && echo "[net]\ngit-fetch-with-cli=true" > /root/.cargo/config.toml
 
-# Install sccache for build caching in cloud buckets
-RUN cargo install sccache --version 0.2.15
+# Install toml-cli for toml file manipulation
+RUN cargo install toml-cli --versio  0.2.0
 
 # Check the versions
 RUN rustc --version \
