@@ -28,7 +28,7 @@ RUN mkdir /root/.cargo \
  && echo "[net]\ngit-fetch-with-cli=true" > /root/.cargo/config.toml
 
 # Install toml-cli for toml file manipulation
-RUN cargo install toml-cli --versio  0.2.0
+RUN cargo install toml-cli --version  0.2.0
 
 # Check the versions
 RUN rustc --version \
